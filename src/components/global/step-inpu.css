@@ -1,0 +1,67 @@
+
+.rs-input-number button {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    background-color: #e5e5e5;
+    position: relative;
+}
+
+.rs-input-number button:before,
+.rs-input-number button:after {
+    content: '';
+    display: block;
+    background-color: #888888;
+    width: 20px;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: rotate(0);
+    z-index: 1;
+    border-radius: 2px;
+}
+.rs-input-number button.rs-input-number-touchspin-up:after {
+    transform: rotate(90deg);
+}
+
+.rc-input-number-handler-up {
+
+}
+.rs-input-number-touchspin-down {
+    background-color: #f5f5f5 !important;
+}
+.rs-input-number input,
+.rs-input-number button {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: inline-block;
+    position: absolute;
+    border: none;
+}
+.rs-input-number input {
+    width: 32px;
+    height: 32px;
+    border: none;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: 500;
+}
+.rs-input-number button.rs-input-number-touchspin-up {
+    right: 0;
+}
+.rs-input-number button.rs-input-number-touchspin-down {
+    left: 0;
+}
+.rs-input-number {
+    width: 98px;
+    height: 32px;
+    position: relative;
+}
