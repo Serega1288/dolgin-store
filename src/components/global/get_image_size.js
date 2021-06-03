@@ -14,7 +14,7 @@ function get_image_size(imgItem, size) {
             return imgItem.mediaItemUrl;
         }
     } catch (error) {
-        console.warning('error image', imgItem)
+        console.warning('error image', error)
         return ''
     }
 }
