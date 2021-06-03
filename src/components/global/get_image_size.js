@@ -1,7 +1,7 @@
 import React from "react"
 
 function get_image_size(imgItem, size) {
-    try {
+    if (imgItem){
         var index, src;
         for (index = 0; index < imgItem.mediaDetails.sizes.length; ++index) {
             if ( imgItem.mediaDetails.sizes[index].name === size) {
@@ -13,10 +13,9 @@ function get_image_size(imgItem, size) {
         } else {
             return imgItem.mediaItemUrl;
         }
-    } catch (error) {
-        console.warning('error image', error)
-        return ''
     }
+
+    return ''
 }
 
 export default get_image_size
