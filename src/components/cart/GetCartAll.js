@@ -2,7 +2,7 @@ import React, {useContext} from "react"
 import {Link} from "gatsby"
 import GetInfoResult from "../InfoBox"
 import { StateContext } from '../global/layout'
-import CartItem from '../cart/CartItem'
+import CartItem from '../cart/СartItem'
 export default () => {
 
     const state = useContext(StateContext)
