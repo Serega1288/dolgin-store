@@ -38,7 +38,7 @@ module.exports = {
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
         //url: `http://gedsbysyte.local/graphql`,
-        url: `http://dev.dolgih.store/graphql`,
+        url: `https://admin.dolgih.store/graphql`,
         //url: `https://dolgih.web-master24.com/wp-json/wp/v2/`,
         debug: {
           preview: true,
@@ -70,7 +70,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: 'http://dev.dolgih.store/graphql'
+        uri: 'https://admin.dolgih.store/graphql'
       }
     }
   ],
