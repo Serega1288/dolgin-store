@@ -23,9 +23,13 @@ const GlobalStyles = createGlobalStyle`
  */
 
 const initialState = {
-    items: []
+    items: [], //CART
+    popFormStatus: false, // boolean true | false
+    popFormProduct: null  // ONE PRODUCT { title: 'Product', id: 'string' } || null
 };
 
+
+//Actions reducer
 function reducer(state, action) {
     switch (action.type) {
       case 'addCart':
@@ -48,18 +52,28 @@ function reducer(state, action) {
            ...state,
            items: action.payload
         }
-        case 'updateItem':
-            console.log('!!!', action)
-            return {
-                ...state,
-                items: state.items.map((item) => {
-                    if (item.id===action.payload.id) {
-                        return {...item,count:action.payload.count}
-                    } else {
-                        return item
-                    }
-                })
-            }
+    case 'updateItem':
+        console.log('!!!', action)
+        return {
+            ...state,
+            items: state.items.map((item) => {
+                if (item.id===action.payload.id) {
+                    return {...item,count:action.payload.count}
+                } else {
+                    return item
+                }
+            })
+        }
+    case 'toggleFormStatus':
+        return {
+            ...state,
+            popFormStatus: action.payload
+        }
+    case 'setFormProduct':
+        return {
+            ...state,
+            popFormProduct: action.payload
+        }
     default:
         throw new Error();
     }

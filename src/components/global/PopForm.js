@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import Buy from '../../images/buy.svg';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import {Link} from "gatsby";
+import { StateContext } from './layout'
+import { DispatchContext } from './layout'
 
 const CONTACT_MUTATION = gql`
   mutation createOrderMutation( $clientMutationId: String!, $firstName: String!, $phone: String! ){
@@ -20,10 +22,21 @@ const CONTACT_MUTATION = gql`
   } 
 `
 
+
+
 export default () => {
 
+    const state = useContext(StateContext)
+    const dispatch = useContext(DispatchContext)
+
     function offPop() {
-        document.querySelector(".PopBox.BuyOneClick").classList.remove('active');
+        dispatch({
+            type: 'toggleFormStatus',
+            payload: false
+        })
+
+
+
         document.querySelector(".PopBox.popThenks").classList.remove('active');
         document.querySelector(".PopBox.popError").classList.remove('active');
     }
@@ -87,14 +100,27 @@ export default () => {
                 <div onClick={offPop} className="shadow"></div>
             </div>
 
-            <div className="PopBox BuyOneClick">
+            <div className={`PopBox BuyOneClick ${state.popFormStatus?'active':''}`}>
                 <div className="PopForm">
                     <span onClick={offPop} className="exit"></span>
                     <div className="boxImg text-center">
                         <img src={Buy} alt=""/>
                     </div>
                     <div className="title">
-                        Купить: <span className="nameProduct"></span>
+                        Купить: <span className="nameProduct">{state.popFormProduct?.title}</span>
+                        { /*
+                            analog code
+
+                            const productTitle = ''
+                            if (state.popFormProduct && state.popFormProduct.title){
+                                productTitle = state.popFormProduct.title
+                            }
+
+                            Купить: <span className="nameProduct">{productTitle}</span>
+
+                            Если state.popFormProduct === null  то при обращении без проверки на существование обекта будет Fatel error
+
+                        */}
                     </div>
                     <Mutation mutation={CONTACT_MUTATION}>
                         {(createOrder, { loading, error, data }) => (
@@ -108,7 +134,7 @@ export default () => {
                                                     clientMutationId: 'BuyOneClick',
                                                     firstName: firstNameValue,
                                                     phone: PhoneValue,
-                                                    //productId: productIdValue,
+                                                    //productId: productIdValue,     #####    state.popFormProduct.id
                                                     //product: ProductValue
                                                 }
                                             })

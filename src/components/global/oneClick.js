@@ -1,14 +1,26 @@
-import React from "react"
+import React, {useContext} from "react"
+import { DispatchContext } from './layout'
 
 const  oneClick = ({id, dataClass, nameProduct}) => {
-    function BuyOneClick() {
-        document.querySelector(".PopBox.BuyOneClick").classList.add('active');
-        //document.querySelector(".PopBox.BuyOneClick .idProduct").setAttribute('value', id)
-        document.querySelector(".PopBox.BuyOneClick .nameProduct").innerHTML = nameProduct;
-        //console.log(nameProduct);
+    const dispatch = useContext(DispatchContext)
+
+    const onBuyOneClick = () => {
+        dispatch({
+            type: 'setFormProduct',
+            payload: {
+                id,
+                title: nameProduct
+            }
+        })
+
+        dispatch({
+            type: 'toggleFormStatus',
+            payload: true
+        })
     }
+
     return (
-        <div onClick={ BuyOneClick } id={id} className={dataClass} >
+        <div onClick={ onBuyOneClick } className={dataClass} >
             Купить в 1 клик
         </div>
     )
