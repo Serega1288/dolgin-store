@@ -1,5 +1,5 @@
 import React from "react"
-import { Step } from "../../templates/checkout"
+
 
 
 
@@ -41,7 +41,7 @@ export default class IndexPage extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
         //alert(`Welcome ${this.state.firstName} ${this.state.lastName}!`)
-        Step(3);
+        this.props.setStep(3);
 
         ( typeof window !== 'undefined' ) && localStorage.setItem('payment', JSON.stringify(this.state) );
         console.log('payment', ( typeof window !== 'undefined' ) && JSON.parse( localStorage.getItem('payment') ) )

@@ -7,26 +7,14 @@ import Payment from "../components/checkout/payment"
 import Pay from "../components/checkout/pay"
 import GetInfoResult from "../components/InfoBox";
 
-export function checkoutList(i) {
-    for (let item of document.querySelectorAll('.box-checkout-list .list-item')) {
-        item.classList.remove('active');
-    }
-    for (let item of document.querySelectorAll('.box-checkout-result .result')) {
-        item.classList.remove('active');
-    }
-    document.getElementById("box-checkout-list-" + i).classList.add('active');
-    document.getElementById("box-checkout-list-" + i + '-result').classList.add('active');
-}
-
-export function Step(i) {
-    checkoutList(i)
-}
-
 
 
 export default ({pageContext}) => {
 
     const cart = typeof window !== 'undefined' &&  JSON.parse( localStorage.getItem('AddCart' ) );
+
+    const [step, setStep] = useState(1)
+
 
     return (
         <Layout page="checkout">
@@ -40,12 +28,12 @@ export default ({pageContext}) => {
                             {/*</div>*/}
                             <div id="box-checkout-list-2"
                                 // onClick={()=>checkoutList(2) }
-                                 className="list-item col active">
+                                 className={`list-item col ${step === 1 ?? 'active'}`}>
                                 Доставка
                             </div>
                             <div id="box-checkout-list-3"
                                 // onClick={()=>checkoutList(3) }
-                                 className="list-item col">
+                                 className={`list-item col ${step === 2 ?? 'active'}`}>
                                 Оплата
                             </div>
                         </div>
@@ -66,19 +54,22 @@ export default ({pageContext}) => {
                             {/*        </div>*/}
                             {/*    </div>*/}
                             {/*</div>*/}
-
-                            <div id="box-checkout-list-2-result" className="result active">
-                                <div className="col-12">
-                                    <Payment />
+                            {step === 1 && <div id="box-checkout-list-2-result" className="result active">
+                                    <div className="col-12">
+                                        <Payment setStep={setStep} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="box-checkout-list-3-result" className="result">
+                            }
+                            {step === 2 && 
+                            <div id="box-checkout-list-3-result" className="result active">
                                 <div className="box-checkout-title text-center pt-3">
                                     <strong>Оплата</strong>
                                 </div>
-
-                                <Pay />
+                                <Pay setStep={setStep}/>
                             </div>
+                            }
+
+                            
                         </div>
                         <ResultPrice />
                     </div>

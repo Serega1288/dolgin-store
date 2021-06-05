@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import {Link, navigate} from "gatsby";
-import {Step} from "../../templates/checkout"
+
 import { StateContext } from '../global/layout'
 // lineItems:{productId: 210, quantity: 1}
 
@@ -27,7 +27,7 @@ const CONTACT_MUTATION = gql`
   }
 `
 
-export default () => {
+export default (props) => {
 
     const state = useContext(StateContext)
 
@@ -50,7 +50,7 @@ export default () => {
                                 onSubmit={
                                     async event => {
                                         event.preventDefault()
-                                        Step(3);
+                                        props.setStep(3);
                                         const payment = typeof window !== 'undefined' && JSON.parse( localStorage.getItem('payment') );
                                         console.log('firstName', payment, payment.firstName );
                                         createOrder({
@@ -135,7 +135,7 @@ export default () => {
                     <Link className="btn style-6" to="/">электронного договора купли-продажи товаров  </Link>
                 </div>
                 <div className="text-center mt-2">
-                    <div onClick={()=>Step(2)} className="box-svg">
+                    <div onClick={()=>props.setStep(2)} className="box-svg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10"><g><g>
                             <path fill="#888" d="M4.997 9.663l.94-.94-3.054-3.06h10.78V4.33H2.883l3.06-3.06-.946-.94L.33 4.997z"/></g></g></svg>
                         <span className="btn style-6 ml-1">Назад к доставке</span>
