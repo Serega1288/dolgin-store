@@ -1,8 +1,18 @@
 module.exports = {
+  // siteMetadata: {
+  //   title: `Gatsby Default Starter`,
+  //   description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+  //   author: `@gatsbyjs`,
+  // },
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: "dolgih store",
+    titleTemplate: "%s · dolgih store",
+    description:
+        "dolgih store description",
     author: `@gatsbyjs`,
+    //url: "https://www.doe.com", // No trailing slash allowed!
+    //image: "/images/snape.jpg", // Path to your image you placed in the 'static' folder
+    //twitterUsername: "@occlumency",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -45,9 +55,10 @@ module.exports = {
         },
         schema: {
           timeout: 2000000,
-          perPage: 100, // currently set to 100
-          requestConcurrency: 15, // currently set to 15
-          previewRequestConcurrency: 5, // currently set to 5
+
+          perPage: 20, // currently set to 100
+          requestConcurrency: 5, // currently set to 15
+          previewRequestConcurrency: 2, // currently set to 5
 
         },
         develop: {

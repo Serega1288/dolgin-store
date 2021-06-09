@@ -6,7 +6,7 @@
 // import ApolloClient from 'apollo-boost';
 //
 // export const client = new ApolloClient({
-//     uri: `https://admin.dolgih.store/graphql`,
+//     uri: `http://dev.dolgih.store/graphql`,
 // })
 //
 //

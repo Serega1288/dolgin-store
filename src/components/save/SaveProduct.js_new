@@ -1,0 +1,61 @@
+import SaveOk from "../../images/save-ok.svg";
+import Save from "../../images/save.svg";
+import React, {useContext} from "react";
+import { DispatchContext } from './layout'
+
+const SaveProduct = ({ id, name, databaseId,  htmlStyle }) => {
+
+    const dispatch = useContext(DispatchContext)
+
+    const toggleSaveProduct = () => {
+
+        const saveProducts = [{
+            id: id,
+            name: name,
+            databaseId: databaseId,
+        }]
+
+
+        saveProducts.forEach(item => {
+            if (item.count>0)
+                dispatch({
+                    type: 'addSave',
+                    payload: item
+                })
+
+            /**
+             * remove
+             *
+             * dispatch({
+                    type: 'removeCart',
+                    payload: {
+                        id: item.id
+                    }
+                })
+             */
+        })
+
+        clearCount()
+
+        document.querySelector("#miniCart.miniCart").classList.add('active');
+    };
+
+
+
+    return (
+        <>
+            <button className={`save`} onClick={toggleSaveProduct}>
+                <img src={SaveOk} alt=""/>
+                {/*{  active ? ( <img src={SaveOk} alt=""/> ) : ( <img src={Save} alt=""/> ) }*/}
+            </button>
+            {/*{htmlStyle === 'remove' ? (*/}
+            {/*    <Link to="/save" id={`product-${id}`} className={`save ${active ? 'active' : ''}`} onClick={} className="btn style-2 w100 mt-auto">*/}
+            {/*        удалить*/}
+            {/*    </Link>*/}
+            {/*) : (*/}
+            {/*    */}
+            {/*)}*/}
+        </>
+    )
+}
+export default SaveProduct
